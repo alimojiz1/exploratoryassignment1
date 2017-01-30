@@ -1,3 +1,8 @@
+data<-read.table("E:/R_workspace/household_power_consumption.txt",sep=";",header = TRUE,na.strings = "?")
+data$Date<-as.Date(data$Date)
+datatouse<-data[data$Date %in% c("1/2/2007","2/2/2007"),]
+SetTime <-strptime(paste(datatouse$Date, datatouse$Time, sep=" "),"%d/%m/%Y %H:%M:%S")
+datatouse<-cbind(SetTime,datatouse)
 columnlines <- c("black", "red", "blue")
 labels <- c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
 plot(datatouse$SetTime, datatouse$Sub_metering_1, type="l", col=columnlines[1], xlab="", ylab="Energy sub metering")
